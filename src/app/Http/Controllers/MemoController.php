@@ -13,7 +13,10 @@ class MemoController extends Controller
 {
     public function register(MemoService $service, MemoRequest $request)
     {
-        return $service->execute((string)$request->input('title'), (string)$request->input('description'));
+        $result = $service->execute((string)$request->input('title'), (string)$request->input('description'));
+        if ($result) {
+            return response(['message' => 'success'], 200)->header('Content-Type', 'application/json');
+        }
     }
 
     public function fetchAllMemo(FetchAllMemoService $service, Request $request): array
