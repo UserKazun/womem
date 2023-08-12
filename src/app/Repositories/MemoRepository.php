@@ -15,9 +15,9 @@ class MemoRepository
      * 
      * @return Memo
      */
-    public static function insertMemo(string $title, string $description)
+    public static function insertMemo(string $title, string $description): Memo
     {
-        Memo::create([
+        return Memo::create([
             'user_id' => 1,
             'title' => $title,
             'description' => $description,
