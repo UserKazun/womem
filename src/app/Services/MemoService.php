@@ -4,15 +4,12 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Repositories\MemoRepository;
+
 class MemoService
 {
-    public function execute(string $title, string $description): array
+    public function execute(string $title, string $description): void
     {
-        return [
-            'data' => [
-                'title' => $title,
-                'description' => $description
-            ]
-        ];
+        MemoRepository::insertMemo($title, $description);
     }
 }
