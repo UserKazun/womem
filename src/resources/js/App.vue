@@ -1,9 +1,8 @@
 <script setup>
-    import { ref } from 'vue'
+    import Header from './components/Header.vue';
 </script>
 
 <template>
-    <div>
-        <router-view></router-view>
-    </div>
+    <Header />
+    <router-view></router-view>
 </template>
