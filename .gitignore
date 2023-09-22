@@ -1,5 +1,6 @@
 .idea
 .vscode
 .env
-blueprint/.DS_STORE
 .DS_STORE
+
+/blueprint
