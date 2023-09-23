@@ -17,5 +17,5 @@
                 <WordCard :cardTitle=card.cardtitle :cardSubTitle=card.cardSubTitle :cardText=card.cardText />
             </div>
         </div>
-      </div>
+    </div>
 </template>
