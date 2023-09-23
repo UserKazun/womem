@@ -1,9 +1,9 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import Example from './components/Example.vue';
 import ExampleTwo from './components/ExampleTwo.vue';
+import CardGrid from './components/CardGrid.vue';
 
 const routes = [
-    { path: '/', component: Example },
+    { path: '/', component: CardGrid },
     { path: '/example', component: ExampleTwo },
 ];
 
