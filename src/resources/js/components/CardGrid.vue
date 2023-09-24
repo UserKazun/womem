@@ -12,6 +12,7 @@
         ],
     });
 
+    // @see: https://zenn.dev/kazuwombat/articles/f23b47f168f1d0
     const dragFromIndex = ref<number | null>(null)
     const saveFromIndex = (index: number) => {
         dragFromIndex.value = index
