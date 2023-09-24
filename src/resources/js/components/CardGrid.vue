@@ -26,10 +26,13 @@
 <template>
     <div class="row row-cols-1 row-cols-sm-2 g-3 m-5">
         <div v-for="(card, index) in wordCards.items">
-            <div class="drop-area" @drop="() => moveItem(index)" @dragover.prevent>
-                {{ index }}
-            </div>
-            <div class="col" draggable="true" @dragstart="() => saveFromIndex(index)">
+            <div 
+                class="col drop-area" 
+                draggable="true" 
+                @dragstart="() => saveFromIndex(index)" 
+                @drop="() => moveItem(index)" 
+                @dragover.prevent
+            >
                 <WordCard :cardTitle=card.cardtitle :cardSubTitle=card.cardSubTitle :cardText=card.cardText />
             </div>
         </div>    
