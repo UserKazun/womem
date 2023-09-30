@@ -4,11 +4,11 @@
 
     const wordCards = reactive({
         items: [
-            {id: 1, cardtitle: "Card1", cardSubTitle: "CardSubTitle1"},
-            {id: 2, cardtitle: "Card2", cardSubTitle: "CardSubTitle2"},
-            {id: 3, cardtitle: "Card3", cardSubTitle: "CardSubTitle3"},
-            {id: 4, cardtitle: "Card4", cardSubTitle: "CardSubTitle4"},
-            {id: 5, cardtitle: "Card5", cardSubTitle: "CardSubTitle5"}
+            {id: 1, cardtitle: "Card1", cardSubTitle: "CardSubTitle1", cardDesc: "This is Card 1."},
+            {id: 2, cardtitle: "Card2", cardSubTitle: "CardSubTitle2", cardDesc: "This is Card 2."},
+            {id: 3, cardtitle: "Card3", cardSubTitle: "CardSubTitle3", cardDesc: "This is Card 3."},
+            {id: 4, cardtitle: "Card4", cardSubTitle: "CardSubTitle4", cardDesc: "This is Card 4."},
+            {id: 5, cardtitle: "Card5", cardSubTitle: "CardSubTitle5", cardDesc: "This is Card 5."}
         ],
     });
 
@@ -40,7 +40,7 @@
                 @drop="() => moveItem(index)" 
                 @dragover.prevent
             >
-                <WordCard :cardTitle=card.cardtitle :cardSubTitle=card.cardSubTitle />
+                <WordCard :cardTitle=card.cardtitle :cardSubTitle=card.cardSubTitle :cardDesc=card.cardDesc />
             </div>
         </div>    
     </div>
