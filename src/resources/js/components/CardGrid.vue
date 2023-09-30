@@ -4,11 +4,11 @@
 
     const wordCards = reactive({
         items: [
-            {id: 1, cardtitle: "Card1", cardSubTitle: "CardSubTitle1", cardText: "CardText1"},
-            {id: 2, cardtitle: "Card2", cardSubTitle: "CardSubTitle2", cardText: "CardText2"},
-            {id: 3, cardtitle: "Card3", cardSubTitle: "CardSubTitle3", cardText: "CardText3"},
-            {id: 4, cardtitle: "Card4", cardSubTitle: "CardSubTitle4", cardText: "CardText4"},
-            {id: 5, cardtitle: "Card5", cardSubTitle: "CardSubTitle5", cardText: "CardText5"}
+            {id: 1, cardtitle: "Card1", cardSubTitle: "CardSubTitle1", cardDesc: "This is Card 1."},
+            {id: 2, cardtitle: "Card2", cardSubTitle: "CardSubTitle2", cardDesc: "This is Card 2."},
+            {id: 3, cardtitle: "Card3", cardSubTitle: "CardSubTitle3", cardDesc: "This is Card 3."},
+            {id: 4, cardtitle: "Card4", cardSubTitle: "CardSubTitle4", cardDesc: "This is Card 4."},
+            {id: 5, cardtitle: "Card5", cardSubTitle: "CardSubTitle5", cardDesc: "This is Card 5."}
         ],
     });
 
@@ -21,23 +21,7 @@
         if (dragFromIndex.value === null) return
         wordCards.items = moveIndex(wordCards.items, dragFromIndex.value, targetIndex)
     }
-</script>
-
-<template>
-    <div class="row row-cols-1 row-cols-sm-2 g-3 m-5">
-        <div v-for="(card, index) in wordCards.items">
-            <div class="drop-area" @drop="() => moveItem(index)" @dragover.prevent>
-                {{ index }}
-            </div>
-            <div class="col" draggable="true" @dragstart="() => saveFromIndex(index)">
-                <WordCard :cardTitle=card.cardtitle :cardSubTitle=card.cardSubTitle :cardText=card.cardText />
-            </div>
-        </div>    
-    </div>
-</template>
-
-<script lang="ts">
-    export const moveIndex = <T>(original: T[], from: number, to: number) => {
+    const moveIndex = <T>(original: T[], from: number, to: number) => {
         const arr = [...original]
         const target = arr[from]
         arr.splice(from, 1)
@@ -46,3 +30,18 @@
     }
 </script>
 
+<template>
+    <div class="row row-cols-1 row-cols-sm-2 g-3 m-5">
+        <div v-for="(card, index) in wordCards.items">
+            <div 
+                class="col drop-area" 
+                draggable="true" 
+                @dragstart="() => saveFromIndex(index)" 
+                @drop="() => moveItem(index)" 
+                @dragover.prevent
+            >
+                <WordCard :cardTitle=card.cardtitle :cardSubTitle=card.cardSubTitle :cardDesc=card.cardDesc />
+            </div>
+        </div>    
+    </div>
+</template>
