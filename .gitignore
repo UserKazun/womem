@@ -3,4 +3,4 @@
 .env
 .DS_STORE
 /blueprint
-/infra/migrate
+/infra/docker/migrate
