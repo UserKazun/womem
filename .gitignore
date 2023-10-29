@@ -4,3 +4,4 @@
 .DS_STORE
 /blueprint
 /infra/docker/migrate
+.php-cs-fixer.cache
