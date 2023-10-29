@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\MeController;
 use App\Http\Controllers\MemoController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,8 +21,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/me', [MeController::class, 'getMe']);
+});
+
 Route::post('/register', [RegisterController::class, 'registerUser']);
-Route::post('/login', [LoginController::class, 'login']);
 
 Route::post('/memo/register', [MemoController::class, 'register']);
 Route::get('/all_memo', [MemoController::class, 'fetchAllMemo']);
