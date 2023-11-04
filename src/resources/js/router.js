@@ -1,11 +1,12 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import ExampleTwo from './components/ExampleTwo.vue';
 import CardGrid from './components/CardGrid.vue';
+import Login from "./components/Login.vue";
 
 const routes = [
     {
-        path: '/', 
-        component: CardGrid, 
+        path: '/',
+        component: CardGrid,
         props: {
             wordCards: [
                 {id: 1, cardtitle: "Card1", cardSubTitle: "CardSubTitle1", cardText: "CardText1"},
@@ -14,9 +15,10 @@ const routes = [
                 {id: 4, cardtitle: "Card4", cardSubTitle: "CardSubTitle4", cardText: "CardText4"},
                 {id: 5, cardtitle: "Card5", cardSubTitle: "CardSubTitle5", cardText: "CardText5"},
             ],
-        } 
+        }
     },
     { path: '/example', component: ExampleTwo },
+    { path: '/login', component: Login }
 ];
 
 const router = createRouter({
