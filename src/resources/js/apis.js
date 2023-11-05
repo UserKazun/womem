@@ -3,11 +3,12 @@ const http = axios.create({
     withCredentials: true,
 });
 
-export const login = (name, password) => {
-    http.get('/sanctum/csrf-cookie').then((res) => {
-        http.post('/login', {name, password}).then((res) => {
-            console.log(res);
-        });
-    });
+function getCsrfToken() {
+    http.get('/sanctum/csrf-cookie').then(r => {});
+}
 
+export const login = (name, password) => {
+    getCsrfToken();
+
+    return http.post('/login', {name, password});
 };

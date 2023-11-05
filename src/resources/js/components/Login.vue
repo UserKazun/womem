@@ -46,7 +46,13 @@ export default {
             const name = this.nameInput;
             const password = this.passwordInput;
 
-            login(name, password)
+            const response = login(name, password);
+
+            response.then(() => {
+                this.$router.push('/example')
+            });
+
+            console.log(response.then((res) => { console.log(res) }));
         }
     }
 }
