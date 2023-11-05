@@ -48,8 +48,12 @@ export default {
 
             const response = login(name, password);
 
-            response.then(() => {
-                this.$router.push('/example')
+            response.then((res) => {
+                if (res.status >= 200 && res.status < 300) {
+                    this.$router.push('/example');
+                } else {
+
+                }
             });
 
             console.log(response.then((res) => { console.log(res) }));
