@@ -1,14 +1,25 @@
+import axios from "axios";
+
 const http = axios.create({
     baseURL: 'http://localhost',
     withCredentials: true,
 });
 
-function getCsrfToken() {
-    http.get('/sanctum/csrf-cookie').then(r => {});
+class Apis {
+    async getCsrfToken() {
+        await http.get('/sanctum/csrf-cookie');
+    }
+
+    async login(name, password) {
+        await this.getCsrfToken();
+        const formData = new FormData();
+
+        formData.append('name', name);
+        formData.append('password', password);
+
+        return await http.post('/login', formData);
+    }
 }
 
-export const login = (name, password) => {
-    getCsrfToken();
-
-    return http.post('/login', {name, password});
-};
+const apis = new Apis()
+export default apis;
