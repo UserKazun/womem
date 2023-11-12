@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import ExampleTwo from './components/ExampleTwo.vue';
 import CardGrid from './components/CardGrid.vue';
 import Login from "./components/Login.vue";
+import apis from "./apis.js";
 
 const routes = [
     {
@@ -17,13 +18,30 @@ const routes = [
             ],
         }
     },
-    { path: '/example', name: "example",　component: ExampleTwo },
-    { path: '/login', component: Login }
+    { path: '/example', name: "example",　component: ExampleTwo, meta: { requiresAuth: true } },
+    { path: '/login', component: Login, ExampleTwo }
 ];
 
 const router = createRouter({
     history: createWebHashHistory(),
     routes,
+});
+
+router.beforeEach((to, from, next) => {
+    const isAuthenticated = apis.isAuthenticated;
+    console.log(isAuthenticated);
+
+    if (to.matched.some(record => record.meta.requiresAuth) && !isAuthenticated) {
+        next('/login');
+    } else if (to.matched.some(record => record.meta.requiresAuth) && isAuthenticated && apis.user === null) {
+        try {
+            apis.getMe().then(_ => {});
+            next();
+        } catch (e) {
+            console.error('Error fetching user:', e);
+        }
+    }
+    next();
 });
 
 export default router;

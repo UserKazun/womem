@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import {login} from "../apis.js";
+import apis from "../apis.js";
 
 export default {
     data() {
@@ -46,13 +46,13 @@ export default {
             const name = this.nameInput;
             const password = this.passwordInput;
 
-            const response = login(name, password);
-
-            response.then(() => {
-                this.$router.push('/example')
-            });
-
-            console.log(response.then((res) => { console.log(res) }));
+            try {
+                const response = apis.login(name, password);
+                console.log(response);
+                this.$router.push('/example');
+            } catch (e) {
+                console.log(e)
+            }
         }
     }
 }
