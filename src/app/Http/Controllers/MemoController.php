@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MemoRequest;
 use App\Http\Resources\MemoResource;
 use App\Models\Memo;
-use App\Services\FetchAllMemoService;
+use App\UseCases\Memo\FetchAllAction;
 use App\UseCases\Memo\RegisterAction;
 use Illuminate\Http\Request;
 
@@ -25,8 +25,13 @@ class MemoController extends Controller
         );
     }
 
-    public function fetchAllMemo(FetchAllMemoService $service, Request $request): array
+    public function fetchAllMemo(FetchAllAction $action, Request $request): MemoResource
     {
-        return $service->execute((int)$request->query('user_id'));
+        return new MemoResource(
+            $action(
+                new Memo(),
+                (int)$request->query('user_id')
+            )
+        );
     }
 }
