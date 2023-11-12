@@ -1,11 +1,18 @@
 import axios from "axios";
 
+const baseURL = 'http://localhost';
+
 const http = axios.create({
-    baseURL: 'http://localhost',
+    baseURL: baseURL,
     withCredentials: true,
 });
 
 class Apis {
+    constructor() {
+        this.isAuthenticated = false;
+        this.user = null;
+    }
+
     async getCsrfToken() {
         await http.get('/sanctum/csrf-cookie');
     }
@@ -19,7 +26,22 @@ class Apis {
 
         return await http.post('/login', formData);
     }
+
+    async getMe() {
+        try {
+            const response = await http.get('/api/me');
+            const user = response.data;
+
+            this.isAuthenticated = true;
+            this.user = user;
+
+            //return user;
+        } catch (e) {
+            console.error("Authentication error: ", e);
+            throw e;
+        }
+    }
 }
 
-const apis = new Apis()
+const apis = new Apis();
 export default apis;

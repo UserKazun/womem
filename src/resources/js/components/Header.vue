@@ -5,5 +5,3 @@
         <router-link to="/login" class="nav-link">Login</router-link>
     </nav>
 </template>
-<script setup>
-</script>
