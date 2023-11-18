@@ -6,9 +6,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MemoRequest;
 use App\Http\Resources\MemoResource;
-use App\Models\Memo;
 use App\UseCases\Memo\FetchAllAction;
 use App\UseCases\Memo\RegisterAction;
+use App\Models\Memo;
 use Illuminate\Http\Request;
 
 class MemoController extends Controller
